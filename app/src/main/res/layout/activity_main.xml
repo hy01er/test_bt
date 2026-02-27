@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#121212"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- 标题 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔵 蓝牙配对压测工具"
+            android:textColor="#1E88E5"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingBottom="16dp"/>
+
+        <!-- ────── 配置区域 ────── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="目标设备过滤（名称和地址 至少填一个）"
+            android:textColor="#9E9E9E"
+            android:textSize="12sp"
+            android:paddingBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/et_device_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="设备蓝牙名称（如 JL_TWS，支持模糊匹配）"
+            android:textColorHint="#555555"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/et_device_addr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="MAC地址（如 AA:BB:CC:DD:EE:FF，精确匹配）"
+            android:textColorHint="#555555"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:inputType="text"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/et_loop_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="测试次数（填0或留空 = 无限循环）"
+            android:textColorHint="#555555"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/bg_input"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:inputType="number"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 开始/停止按钮 -->
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="开始测试"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#1E88E5"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- ────── 统计面板 ────── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="12dp"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📊 压测统计"
+                android:textColor="#B0B0B0"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp"/>
+
+            <!-- 状态 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="当前状态: "
+                    android:textColor="#9E9E9E"
+                    android:textSize="13sp"/>
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未开始"
+                    android:textColor="#FFD700"
+                    android:textSize="13sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- 数据格 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tv_success"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#4CAF50"
+                        android:textSize="28sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="成功"
+                        android:textColor="#9E9E9E"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tv_fail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#F44336"
+                        android:textSize="28sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="失败"
+                        android:textColor="#9E9E9E"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tv_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textColor="#90CAF9"
+                        android:textSize="28sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="总计"
+                        android:textColor="#9E9E9E"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/tv_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0%"
+                        android:textColor="#FFD700"
+                        android:textSize="22sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="成功率"
+                        android:textColor="#9E9E9E"
+                        android:textSize="12sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 运行时长 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="运行时长: "
+                    android:textColor="#9E9E9E"
+                    android:textSize="13sp"/>
+                <TextView
+                    android:id="@+id/tv_elapsed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+
+            <!-- 失败原因详情 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="失败原因: "
+                    android:textColor="#9E9E9E"
+                    android:textSize="13sp"/>
+                <TextView
+                    android:id="@+id/tv_fail_detail"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="无"
+                    android:textColor="#FF9800"
+                    android:textSize="13sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ────── 日志区域 ────── -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📋 详细日志"
+            android:textColor="#B0B0B0"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:paddingBottom="4dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_log"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:background="@drawable/bg_card"
+            android:padding="8dp"
+            android:clipToPadding="false"/>
+
+    </LinearLayout>
+</ScrollView>
